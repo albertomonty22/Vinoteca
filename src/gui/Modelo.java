@@ -38,7 +38,7 @@ public class Modelo {
 
     void conectar() {
         try {
-            conexion= DriverManager.getConnection("jdbc:mysql://"+ip+":3306/mibase",user,password);
+            conexion= DriverManager.getConnection("jdbc:mysql://"+ip+":3306/vinoteca",user,password);
         } catch (SQLException e) {
             //sino conecta voy a cargar el script directamente
             //voy a llamar a un metodo que se llama leerFichero
@@ -54,9 +54,8 @@ public class Modelo {
                 assert statement!=null;
                 statement.close();
             } catch (SQLException | IOException ex) {
-                e.printStackTrace();
+                ex.printStackTrace();
             }
-            e.printStackTrace();
         }
     }
 
@@ -70,7 +69,7 @@ public class Modelo {
     }
 
     String leerFichero() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("basedatos_java.sql"));
+        BufferedReader reader = new BufferedReader(new FileReader("basededatos_java.sql"));
         String linea;
         StringBuilder stringBuilder = new StringBuilder();
         while ((linea=reader.readLine())!=null) {
@@ -312,7 +311,7 @@ public class Modelo {
                 "nombre AS 'Nombre'," +
                 "apellidos AS 'Apellidos'," +
                 "fechanacimiento AS 'Fecha de nacimiento'," +
-                "idbodega AS 'Bodega de trabajon'" +
+                "idbodega AS 'Bodega de trabajo'" +
                 "FROM enologos";
         PreparedStatement sentencia=null;
         ResultSet resultado=null;
@@ -337,17 +336,17 @@ public class Modelo {
     }
 
     ResultSet consultarVinos() throws SQLException {
-        String sentenciaSql="SELECT b.idvino AS 'ID'," +
-                "b.nombre AS 'Nombre'," +
-                "concat(a.idenologo,' - ',a.apellidos,',',a.nombre) AS 'Enólogo'," +
-                "concat(e.idbodega,' - ',e.bodega) AS 'Bodega'," +
-                "b.tipo_vino AS 'Tipo de Vino'," +
-                "b.anio AS 'Año'," +
+        String sentenciaSql = "SELECT b.idvino AS 'ID', " +
+                "b.nombre AS 'Nombre', " +
+                "concat(a.idenologo, ' - ', a.apellidos, ',', a.nombre) AS 'Enólogo', " +
+                "concat(e.idbodega, ' - ', e.nombre) AS 'Bodega', " + // Cambié 'e.bodega' por 'e.nombre' basado en tu tabla
+                "b.tipo_vino AS 'Tipo de Vino', " +
+                "b.anio AS 'Año' " + // Eliminada la coma extra aquí
                 "FROM vinos AS b " +
                 "INNER JOIN bodegas AS e " +
-                "ON e.idbodega=b.idbodega " +
-                "INNER JOIN enologos as a " +
-                "ON a.idenologo=b.idenologo";
+                "ON e.idbodega = b.idbodega " +
+                "INNER JOIN enologos AS a " +
+                "ON a.idenologo = b.idenologo";
         PreparedStatement sentencia=null;
         ResultSet resultado=null;
         sentencia = conexion.prepareStatement(sentenciaSql);

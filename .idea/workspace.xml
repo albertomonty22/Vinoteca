@@ -41,6 +41,26 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Principal" />
+      <module name="Vinoteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Principal" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -53,7 +73,7 @@
       <updated>1736333562344</updated>
       <workItem from="1736333565324" duration="1227000" />
       <workItem from="1736355938335" duration="6332000" />
-      <workItem from="1736406488028" duration="2941000" />
+      <workItem from="1736406488028" duration="7760000" />
     </task>
     <servers />
   </component>
