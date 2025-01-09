@@ -217,8 +217,8 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 }
                 break;
             case "guardarOpciones":
-                modelo.setPropValues(vista.optionDialog.txtIP.getText(),
-                        vista.optionDialog.txtUsuario.getText(),
+                modelo.setPropValues(vista.optionDialog.textIP.getText(),
+                        vista.optionDialog.textUsuario.getText(),
                         String.valueOf(vista.optionDialog.pfPass.getPassword()),
                         String.valueOf(vista.optionDialog.pfAdmin.getPassword()));
                 //eliminamos JFrame
@@ -241,7 +241,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                                 String.valueOf(vista.comboEnologo.getSelectedItem()),
                                 String.valueOf(vista.comboBodegaVino.getSelectedItem()),
                                 String.valueOf(vista.comboTipoVino.getSelectedItem()),
-                                vista.textAño.getText();
+                                vista.textAño.getText());
                     }
                 }catch (NumberFormatException nfe){
                     Util.showErrorAlert("Introduce números en los campos que lo requieren");
@@ -289,7 +289,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                                 vista.textNombre.getText(),
                                 vista.textApellido.getText(),
                                 vista.fechaNacimiento.getDate(),
-                                String.valueOf(vista.comboBodega.getSelectedItem());
+                                String.valueOf(vista.comboBodega.getSelectedItem()));
                     }
                 }catch (NumberFormatException nfe){
                     Util.showErrorAlert("Introduce números en los campos que lo requieren");
