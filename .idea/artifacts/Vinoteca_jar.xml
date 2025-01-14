@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Vinoteca:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Vinoteca_jar</output-path>
+    <root id="archive" name="Vinoteca.jar">
+      <element id="module-output" name="Vinoteca" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-forms-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-8.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/mysql-connector-java-5.1.44-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/flatlaf-demo-3.5.4.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jgoodies-common-1.8.1" />
+    </root>
+  </artifact>
+</component>

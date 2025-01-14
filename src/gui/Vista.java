@@ -92,6 +92,26 @@ public class Vista extends JFrame{
         setEnumComboBox();
         //cargo table models
         setTableModels();
+        this.setContentPane(panel1);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.pack();
+        this.setSize(new Dimension(this.getWidth() + 100, this.getHeight()));
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+
+        // Aplica colores
+        applyStyles();
+
+        // Creo cuadro de diálogo
+        optionDialog = new OptionDialog(this);
+        // Llamo menú
+        setMenu();
+        // Llamo cuadro diálogo admin
+        setAdminDialog();
+        // Cargo enumerados
+        setEnumComboBox();
+        // Cargo table models
+        setTableModels();
     }
     private void setMenu() {
         JMenuBar mbBar = new JMenuBar();
@@ -152,5 +172,45 @@ public class Vista extends JFrame{
         this.bodegaTabla.setModel(dtmBodegas);
     }
 
+    private void applyStyles() {
+        // Color de fondo del panel principal
+        panel1.setBackground(new Color(240, 240, 240));
 
+        // Colores para los paneles principales
+        JPanelBodega.setBackground(new Color(220, 245, 255));
+        JPanelEnologo.setBackground(new Color(235, 255, 220));
+        JPanelVino.setBackground(new Color(255, 240, 245));
+
+        // Colores para botones
+        Color buttonBackground = new Color(70, 130, 180); // Azul acero
+        Color buttonForeground = Color.WHITE;
+
+        JButton[] buttons = {
+                btnBodegaAñadir, btnBodegaModificar, btnBodegaEliminar,
+                btnEnologoAñadir, btnEnologoModificar, btnEnologoEliminar,
+                btnVinoAñadir, btnVinoModificar, btnVinoEliminar
+        };
+
+        for (JButton button : buttons) {
+            button.setBackground(buttonBackground);
+            button.setForeground(buttonForeground);
+        }
+
+        // Estiliza las tablas
+        JTable[] tables = {bodegaTabla, enologoTabla, vinoTabla};
+        for (JTable table : tables) {
+            table.setBackground(Color.WHITE);
+            table.setForeground(Color.BLACK);
+            table.setGridColor(new Color(200, 200, 200));
+            table.setSelectionBackground(new Color(135, 206, 250)); // Azul claro
+            table.setSelectionForeground(Color.BLACK);
+        }
+
+        // Menú estilizado
+        JMenuBar menuBar = this.getJMenuBar();
+        if (menuBar != null) {
+            menuBar.setBackground(new Color(100, 149, 237)); // Azul cielo medio
+            menuBar.setForeground(Color.WHITE);
+        }
+    }
 }

@@ -4,7 +4,7 @@
     <rowspec value="center:399px:noGrow"/>
     <colspec value="fill:d:noGrow"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="551" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -34,12 +34,14 @@
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:108px:noGrow"/>
-            <colspec value="fill:122px:noGrow"/>
+            <rowspec value="center:35px:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:65px:noGrow"/>
+            <colspec value="fill:183px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
             <constraints>
-              <tabbedpane title="VIno"/>
+              <tabbedpane title="Vino"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -157,7 +159,7 @@
               </component>
               <scrollpane id="b573f">
                 <constraints>
-                  <grid row="10" column="2" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="2" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -180,13 +182,15 @@
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:38px:noGrow"/>
+            <rowspec value="center:37px:noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:61px:noGrow"/>
+            <rowspec value="center:32px:noGrow"/>
             <rowspec value="top:5dlu:noGrow"/>
-            <rowspec value="center:105px:noGrow"/>
+            <rowspec value="center:32px:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:95px:noGrow"/>
             <colspec value="fill:130px:noGrow"/>
-            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="left:30dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
             <constraints>
               <tabbedpane title="Enólogo"/>
@@ -291,7 +295,7 @@
               </component>
               <scrollpane id="9be65">
                 <constraints>
-                  <grid row="8" column="2" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="2" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -321,7 +325,9 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <colspec value="fill:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:70px:noGrow"/>
+            <colspec value="fill:184px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:360px:grow"/>
             <constraints>
@@ -447,7 +453,7 @@
               </component>
               <scrollpane id="a3d92">
                 <constraints>
-                  <grid row="10" column="2" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="2" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>

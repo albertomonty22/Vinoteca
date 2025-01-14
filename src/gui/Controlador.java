@@ -417,7 +417,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
         Vector<String> columnNames = new Vector<>();
         int columnCount = metaData.getColumnCount();
         for (int column=1;column<=columnCount;column++){
-            columnNames.add(metaData.getColumnName(column));
+            columnNames.add(metaData.getColumnLabel(column));
         }
         //Datos a tabla
         Vector<Vector<Object>> data = new Vector<>();
@@ -450,7 +450,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
         Vector<String> columnNames = new Vector<>();
         int columnCount = metaData.getColumnCount();
         for (int column=1;column<=columnCount;column++){
-            columnNames.add(metaData.getColumnName(column));
+            columnNames.add(metaData.getColumnLabel(column));
         }
         //Datos a tabla
         Vector<Vector<Object>> data = new Vector<>();
@@ -475,7 +475,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
         Vector<String> columnNames = new Vector<>();
         int columnCount = metaData.getColumnCount();
         for (int column=1;column<=columnCount;column++){
-            columnNames.add(metaData.getColumnName(column));
+            columnNames.add(metaData.getColumnLabel(column));
         }
         //Datos a tabla
         Vector<Vector<Object>> data = new Vector<>();
