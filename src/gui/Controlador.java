@@ -113,7 +113,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                         vista.textNombre.setText(String.valueOf(vista.enologoTabla.getValueAt(row, 1)));
                         vista.textApellido.setText(String.valueOf(vista.enologoTabla.getValueAt(row, 2)));
                         vista.fechaNacimiento.setDate((Date.valueOf(String.valueOf(vista.enologoTabla.getValueAt(row, 3)))).toLocalDate());
-                        vista.comboBodega.setSelectedItem(String.valueOf(vista.enologoTabla.getValueAt(row, 4)));
+                        vista.comboBodega.setSelectedIndex(findItemIndexByNumber(vista.comboBodega, Integer.parseInt(vista.enologoTabla.getValueAt(row, 4).toString())));
                     } else if (e.getValueIsAdjusting()
                             && ((ListSelectionModel) e.getSource()).isSelectionEmpty() && !refrescar) {
                         if (e.getSource().equals(vista.bodegaTabla.getSelectionModel())) {
@@ -140,7 +140,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                         int row = vista.vinoTabla.getSelectedRow();
                         vista.textNombreVino.setText(String.valueOf(vista.vinoTabla.getValueAt(row, 1)));
                         vista.comboEnologo.setSelectedItem(String.valueOf(vista.vinoTabla.getValueAt(row, 2)));
-                        vista.comboBodega.setSelectedItem(String.valueOf(vista.vinoTabla.getValueAt(row, 3)));
+                        vista.comboBodegaVino.setSelectedItem(String.valueOf(vista.vinoTabla.getValueAt(row, 3)));
                         vista.comboTipoVino.setSelectedItem(String.valueOf(vista.vinoTabla.getValueAt(row, 4)));
                         vista.textAño.setText(String.valueOf(vista.vinoTabla.getValueAt(row, 5)));
                     } else if (e.getValueIsAdjusting()
@@ -156,6 +156,20 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 }
             }
         });
+    }
+
+    private static int findItemIndexByNumber(JComboBox<String> comboBox, int number) {
+        String prefix = number + " - ";
+        ComboBoxModel<String> model = comboBox.getModel();
+
+        for (int i = 0; i < model.getSize(); i++) {
+            String item = model.getElementAt(i);
+            if (item.startsWith(prefix)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
@@ -325,27 +339,27 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                 break;
             case "anadirBodega":
                 try {
-                    if (comprobarBodegaVacia()) {
-                        Util.showErrorAlert("Rellena todos los campos");
-                        vista.bodegaTabla.clearSelection();
-                    } else if (modelo.bodegaNombreYaExiste(vista.textNombreBodega.getText())) {
-                        Util.showErrorAlert("Esta bodega ya existe");
-                        vista.bodegaTabla.clearSelection();
-                    } else {
-                        modelo.insertarBodega(
-                                vista.textNombreBodega.getText(),
-                                vista.textEmail.getText(),
-                                vista.textTelefono.getText(),
-                                vista.textDireccion.getText(),
-                                String.valueOf(vista.comboDenominacionOrigen.getSelectedItem()));
-                    }
-                }catch (NumberFormatException nfe){
-                    Util.showErrorAlert("Introduce números en los campos que lo requieren");
+                if (comprobarBodegaVacia()) {
+                    Util.showErrorAlert("Rellena todos los campos");
                     vista.bodegaTabla.clearSelection();
+                } else if (modelo.bodegaNombreYaExiste(vista.textNombreBodega.getText())) {
+                    Util.showErrorAlert("Esta bodega ya existe");
+                    vista.bodegaTabla.clearSelection();
+                } else {
+                    modelo.insertarBodega(
+                            vista.textNombreBodega.getText(),
+                            vista.textEmail.getText(),
+                            vista.textTelefono.getText(),
+                            vista.textDireccion.getText(),
+                            String.valueOf(vista.comboDenominacionOrigen.getSelectedItem()));
                 }
-                borrarCamposBodegas();
-                refrescarBodega();
-                break;
+            }catch (NumberFormatException nfe){
+                Util.showErrorAlert("Introduce números en los campos que lo requieren");
+                vista.bodegaTabla.clearSelection();
+            }
+            borrarCamposBodegas();
+            refrescarBodega();
+            break;
             case "modificarBodega":
                 try {
                     if (comprobarBodegaVacia()) {
@@ -364,8 +378,8 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
                     Util.showErrorAlert("Introduce números en los campos que lo requieren");
                     vista.bodegaTabla.clearSelection();
                 }
-                borrarCamposEnologos();
-                refrescarEnologos();
+                borrarCamposBodegas();
+                refrescarBodega();
                 break;
             case "eliminarBodega":
                 modelo.eliminarBodega((Integer) vista.bodegaTabla.getValueAt(vista.bodegaTabla.getSelectedRow(),0));
@@ -420,7 +434,7 @@ public class Controlador implements ActionListener, ListSelectionListener, Windo
             vista.comboEnologo.removeAllItems();
             for (int i = 0;i<vista.dtmEnologos.getRowCount();i++){
                 vista.comboEnologo.addItem(vista.dtmEnologos.getValueAt(i,0)+" - "+
-                        vista.dtmEnologos.getValueAt(i,2)+", "+
+                        vista.dtmEnologos.getValueAt(i,2)+","+
                         vista.dtmEnologos.getValueAt(i,1));
             }
             //ponemos datos en comboAutor con este formato:

@@ -54,9 +54,9 @@ begin
 	set i=i+1;
 	end while;
 	return 0;
-end$$
+end;
 --
-create function existeNombreBodega(f_nombre varchar(50))
+create FUNCTION existeNombreBodega(f_nombre varchar(50))
 returns bit
 begin
 	declare i int;
@@ -69,7 +69,7 @@ begin
 	set i=i+1;
 	end while;
 	return 0;
-end$$
+end;
 --
 create FUNCTION existeNombreEnologo(f_nombre varchar(50))
 returns bit
@@ -84,4 +84,4 @@ begin
 	set i=i+1;
 	end while;
 	return 0;
-end$$
+end;

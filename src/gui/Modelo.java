@@ -80,7 +80,7 @@ public class Modelo {
     }
 
     void insertarEnologo(String nombre, String apellidos, LocalDate fechaNacimiento,String bodega) {
-        String sentenciaSql="INSERT INTO enologos (nombre,apellidos, fechanacimiento,bodega)" +
+        String sentenciaSql="INSERT INTO enologos (nombre,apellidos, fechanacimiento,idbodega)" +
                 "VALUES (?,?,?,?) ";
         PreparedStatement sentencia=null;
 
@@ -89,7 +89,7 @@ public class Modelo {
             sentencia.setString(1,nombre);
             sentencia.setString(2,apellidos);
             sentencia.setDate(3, Date.valueOf(fechaNacimiento));
-            sentencia.setString(4,bodega);
+            sentencia.setString(4,bodega.substring(0,1));
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,7 +105,7 @@ public class Modelo {
     }
 
     void insertarBodega(String bodega, String email,String telefono,String direccion,String denominacionOrigen) {
-        String sentenciaSql="INSERT INTO bodegas (bodega,email, telefono,direccion,denominacionOrigen)" +
+        String sentenciaSql="INSERT INTO bodegas (nombre,email, telefono,direccion,denominacion_origen)" +
                 "VALUES (?,?,?,?,?) ";
         PreparedStatement sentencia=null;
 
@@ -131,7 +131,7 @@ public class Modelo {
     }
 
     void insertarVino(String nombre,String enologo,String bodega,String tipoVino,String año) {
-        String sentenciaSql="INSERT INTO vinos (nombre,idenologo,idbodega,tipoVino,año)" +
+        String sentenciaSql="INSERT INTO vinos (nombre,idenologo,idbodega,tipo_vino,anio)" +
                 "VALUES (?,?,?,?,?)";
         PreparedStatement sentencia=null;
 
@@ -161,7 +161,7 @@ public class Modelo {
     }
 
     void modificarEnologo(String nombre, String apellidos, LocalDate fechaNacimiento, String bodega, Integer idenologo) {
-        String sentenciaSql="UPDATE enologos SET nombre=?,apellidos=?,fechanacimiento=?,bodega=?" +
+        String sentenciaSql="UPDATE enologos SET nombre=?,apellidos=?,fechanacimiento=?,idbodega=?" +
                 "WHERE idenologo=?";
         PreparedStatement sentencia=null;
         try {
@@ -169,7 +169,7 @@ public class Modelo {
             sentencia.setString(1,nombre);
             sentencia.setString(2,apellidos);
             sentencia.setDate(3, Date.valueOf(fechaNacimiento));
-            sentencia.setString(4,bodega);
+            sentencia.setString(4,bodega.substring(0,1));
             sentencia.setInt(5, idenologo);
             sentencia.executeUpdate();
         } catch (SQLException e) {
@@ -186,7 +186,7 @@ public class Modelo {
     }
 
     void modificarBodega(String bodega, String email, String telefono, String direccion, String denominacionOrigen, int idbodega) {
-        String sentenciaSql="UPDATE bodegas SET bodega=?,email=?,telefono=?,direccion=?,denominacionOrigen=?" +
+        String sentenciaSql="UPDATE bodegas SET nombre=?,email=?,telefono=?,direccion=?,denominacion_origen=?" +
                 "WHERE idbodega=? ";
         PreparedStatement sentencia=null;
 
@@ -213,7 +213,7 @@ public class Modelo {
     }
 
     void modificarVino(String nombre,String enologo,String bodega,String tipoVino,String año,int idvino) {
-        String sentenciaSql="UPDATE vinos SET nombre=?,idenologo=?,idbodega=?,tipoVino=?,año=?" +
+        String sentenciaSql="UPDATE vinos SET nombre=?,idenologo=?,idbodega=?,tipo_vino=?,anio=?" +
                 "WHERE idvino=?";
         PreparedStatement sentencia=null;
 
@@ -357,33 +357,33 @@ public class Modelo {
     boolean vinoYaExiste(String nombre) {
         String consulta="SELECT existeNombreVino(?)";
         PreparedStatement function;
-        boolean isbnExists=false;
+        boolean vinoExists=false;
         try {
             function=conexion.prepareStatement(consulta);
             function.setString(1,nombre);
             ResultSet rs =function.executeQuery();
             rs.next();
-            isbnExists=rs.getBoolean(1);
+            vinoExists=rs.getBoolean(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return isbnExists;
+        return vinoExists;
     }
 
     boolean bodegaNombreYaExiste(String nombre) {
         String consulta="SELECT existeNombreBodega(?)";
         PreparedStatement function;
-        boolean nombreExists=false;
+        boolean nombreBodegaExists=false;
         try {
             function=conexion.prepareStatement(consulta);
             function.setString(1,nombre);
             ResultSet rs =function.executeQuery();
             rs.next();
-            nombreExists=rs.getBoolean(1);
+            nombreBodegaExists=rs.getBoolean(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return nombreExists;
+        return nombreBodegaExists;
     }
 
     boolean enologoNombreYaExiste(String nombre, String apellidos) {
